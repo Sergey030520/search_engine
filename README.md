@@ -1,15 +1,4 @@
 <h1 align="center">Hi 👋, I'm Sergey Makarov</h1>
-<h3 align="center">A passionate frontend developer from Russia</h3>
-
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=sergey030520&label=Profile%20views&color=0e75b6&style=flat" alt="sergey030520" /> </p>
-
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=sergey030520" alt="sergey030520" /></a> </p>
-
-- 🔭 I’m currently working on [search_engine](https://github.com/Sergey030520/search_engine)
-
-- 👨‍💻 All of my projects are available at [https://github.com/Sergey030520](https://github.com/Sergey030520)
-
-<h1 align="center">Hi 👋, I'm Sergey Makarov</h1>
 
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=sergey030520&label=Profile%20views&color=0e75b6&style=flat" alt="sergey030520" /> </p>
