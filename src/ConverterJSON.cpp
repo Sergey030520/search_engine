@@ -18,12 +18,11 @@ ConverterJSON::ConverterJSON(){
         ConsoleOutput().PrintLn(except->what());
     }
     if(!config_file.contains("config")){
-        throw new EngineException("No engine data found in the configuration file!");
+        throw new EngineException("Exception: config file is empty!");
     }
     float version = ReadVersionEngine(config_file.at("config"));
     if(searchEngine.version != version){
-        throw new EngineException("The version of the posic engine does not match the version "
-                                  "from the configuration file!");
+        throw new EngineException("Exception: has incorrect file version!");
     }
     if(config_file.contains("name")){
        searchEngine.name = config_file.at("name");
@@ -77,14 +76,14 @@ bool ConverterJSON::SafeReadString(int &count_read_words, int &count_read_chars_
                 text += symbol;
                 ++count_read_chars_word;
             } else {
-                ConsoleOutput().PrintLn("Exceeding the number of letters in a word!");
+                ConsoleOutput().PrintLn("Exception: Exceeding the number of letters in a word!");
             }
         } else if (count_read_chars_word != 0) {
             count_read_chars_word = 0;
             count_read_words++;
             text += symbol;
             if (count_read_words >= MAX_WORDS_FILE) {
-                ConsoleOutput().PrintLn("Exceeding the allowed number of words in the text!");
+                ConsoleOutput().PrintLn("Exception: Exceeding the allowed number of words in the text!");
                 return STOP_READ;
             }
         }
@@ -135,7 +134,7 @@ bool ConverterJSON::CheckCountWordsInRequest(const string &request) {
     if(count_words != MAX_WORDS_REQUEST && count_words >= MIN_WORDS_REQUEST) {
         return true;
     }else{
-        ConsoleOutput().PrintLn("Warning: Bad request! Max number words in request 10 and minimum 1!");
+        ConsoleOutput().PrintLn("Exception: Bad request! Max number words in request 10 and minimum 1!");
         return false;
     }
 }
@@ -143,7 +142,7 @@ bool ConverterJSON::CheckCountWordsInRequest(const string &request) {
 json ConverterJSON::LoadJsonFile(const fs::path& path_to_file) {
     ifstream file(path_to_file.string());
     if(!file.is_open()){
-        throw new EngineException(("Exception: File " + path_to_file.filename().string() + " is not find!"));
+        throw new EngineException(("Exception: config " + path_to_file.filename().string() + " file is missing!"));
     }
     json data_file = json::parse(file);
     file.close();
@@ -159,4 +158,8 @@ void ConverterJSON::ShowEngine() const{
 float ConverterJSON::ReadVersionEngine(json config) {
     if(!config.contains("version")) return -1;
     return std::stof(config["version"].get<string>());
+}
+
+ConverterJSON::~ConverterJSON() {
+    ConsoleOutput().PrintLn("Stop Engine!");
 }

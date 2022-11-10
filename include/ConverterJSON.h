@@ -125,6 +125,8 @@ public:
 */
     float ReadVersionEngine(json config);
 
+    ~ConverterJSON();
+
 };
 
 #endif //SEARCH_ENGINE_CONVERTERJSON_H
