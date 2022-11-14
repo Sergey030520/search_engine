@@ -20,18 +20,15 @@ struct RelativeIndex{
 class SearchServer {
 public:
 /**
-* @param idx в конструктор класса передаётся ссылка на класс
-InvertedIndex,
+* @param idx в конструктор класса передаётся ссылка на класс InvertedIndex,
 * чтобы SearchServer мог узнать частоту слов встречаемых в
 запросе
 */
     SearchServer(InvertedIndex& idx);
 /**
 * Метод обработки поисковых запросов
-* @param queries_input поисковые запросы взятые из файла
-requests.json
-* @return возвращает отсортированный список релевантных ответов для
-заданных запросов
+* @param queries_input поисковые запросы взятые из файла requests.json
+* @return возвращает отсортированный список релевантных ответов для заданных запросов
 */
     std::vector<std::vector<RelativeIndex>*> Search(const
                                                    std::vector<std::string>& queries_input);
@@ -41,9 +38,8 @@ private:
 
     /**
 * Метод обработки поискового запроса
-* @param request поисковой запрос взятые из файла
-requests.json
- @param answer ссылка на динамический массив вычисленных относительных релевантности
+* @param request поисковой запрос взятые из файла requests.json
+* @param answer ссылка на динамический массив вычисленных относительных релевантности
 */
     void SearchRequest(string& request, vector<RelativeIndex>* answer);
     /**
@@ -61,7 +57,7 @@ private:
 /**
 * Метод поиска совпадающих файлов для слова запроса
 * @param word слово из поискового запроса
- * @param current_files файлы которые указывают и совпали с предыдущими словами запроса
+* @param current_files файлы которые указывают и совпали с предыдущими словами запроса
 * @return возвращает список файлов которые совпали с предыдущими словами
 */
     set<size_t> FindMatchFilesForWord(string& word, set<size_t>& current_files);
@@ -74,7 +70,7 @@ private:
 /**
 * Метод вычисления абсолютной релевантности для всех файлов
 * @param request слова из поискового запроса
- * @param files файлы которые указывают на слова запроса
+* @param files файлы которые указывают на слова запроса
 * @return возвращает массив вычисленной абсолютной релевантности для каждого документа
 */
     vector<RelativeIndex> CalculateTotalRelevanceFiles(vector<pair<string, size_t>>& request,
@@ -82,7 +78,7 @@ private:
     /**
 * Метод вычисления абсолютной релевантности для файла
 * @param request слова из поискового запроса
- * @param doc_id id документа для которого необходимо рассчитать абсолютною релевантность
+* @param doc_id id документа для которого необходимо рассчитать абсолютною релевантность
 * @return возвращает абсолютную релевантность для заданного файла
 */
     float CalculateTotalRelevanceFile(vector<pair<string, size_t>> &request, size_t& doc_id);

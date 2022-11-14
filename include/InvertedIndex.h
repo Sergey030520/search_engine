@@ -16,7 +16,6 @@ using namespace std;
 struct Entry {
     size_t doc_id, count;
     Entry(size_t in_doc_id, size_t in_count = 1) : doc_id(in_doc_id), count(in_count){}
-// Данный оператор необходим для проведения тестовых сценариев
     bool operator ==(const Entry& other) const {
         return (doc_id == other.doc_id &&
                 count == other.count);
@@ -27,7 +26,7 @@ public:
     InvertedIndex() = default;
 /**
 * Обновить или заполнить базу документов, по которой будем совершать
-поиск
+* поиск
 * @param texts_input содержимое документов
 */
     void UpdateDocumentBase(const std::vector<std::string>& input_docs);
@@ -39,7 +38,7 @@ public:
 */
     std::vector<Entry> GetWordCount(const std::string& word);
 /**
- * Метод рассчитывает для каждого слова общее количество упоминаний во всех файлах
+* Метод рассчитывает для каждого слова общее количество упоминаний во всех файлах
 * @return возвращает динамический массив слов с общим числом повторений
 */
     vector<pair<string, size_t>> CalculateNumberOccurrenceWords();
@@ -52,13 +51,13 @@ private:
         /**
 * Метод индексирует слова документа
 * @param doc_id id документа
-*@param text тест файла
+* @param text тест файла
 */
     void indexingDocument(size_t doc_id, string& text);
 /**
- * Метод добавляет или увеличивает количество упоминаний слова в для заданного документа
+* Метод добавляет или увеличивает количество упоминаний слова в для заданного документа
 * @param doc_id id документа, для добавления или увеличения количества упоминаний слова для данного файла;
-    * @param entries ссылка на массив упоминаний в документах искомого слова
+* @param entries ссылка на массив упоминаний в документах искомого слова
 */
     void FindEntryAndIncreaseVal(const size_t & doc_id, vector<Entry>* entries);
 
