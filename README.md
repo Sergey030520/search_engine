@@ -20,14 +20,14 @@
 # search_engine
 
 ## Оглавление
-1. [Описание](#description_project)
-2. [Инструкция по подключению библиотек](#description_project)
-3. [Сборка проекта и тестирование](#build_and_testing_project)
-4. [Инструкция по сборке проекта](#manual_build_project)
-   1. [Конфигурационный файл поискового движка](#config_file_search_engine)
-   2. [Файл пользовательских запросов](#file_users_requests)
-   3. [Файл ответов на пользовательские запросы](#file_answers_for_requests)
-5. [Пример работы поискового движка](#example_work_search_engine)
+1. [<p style='font-size: 20px'>Описание</p>](#description_project)
+2. [<p style='font-size: 20px'>Инструкция по подключению библиотек</p>](#description_project)
+3. [<p style='font-size: 20px'>Сборка проекта и тестирование</p>](#build_and_testing_project)
+4. [<p style='font-size: 20px'>Инструкция по сборке проекта</p>](#manual_build_project)
+   1. [<p style='font-size: 17px'>Конфигурационный файл поискового движка</p>](#config_file_search_engine)
+   2. [<p style='font-size: 17px'>Файл пользовательских запросов</p>](#file_users_requests)
+   3. [<p style='font-size: 17px'>Файл ответов на пользовательские запросы</p>](#file_answers_for_requests)
+5. [<p style='font-size: 20px'>Пример работы поискового движка</p>](#example_work_search_engine)
 ## Описание <a name="description_project"></a>
 
 Разработанный поисковой движок представляет из себя консольное приложение
