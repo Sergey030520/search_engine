@@ -96,7 +96,7 @@ int ConverterJSON::GetResponsesLimit() {
     if (config_file.at("config").contains("max_responses")) {
         return config_file.at("config").at("max_responses");
     }
-    return 5;
+    return MAX_RESPONSES;
 }
 
 std::vector<std::string> ConverterJSON::GetRequests() {
@@ -112,18 +112,20 @@ std::vector<std::string> ConverterJSON::GetRequests() {
             if(CheckCountWordsInRequest(request)){
                text_requests.emplace_back(request);
             }
-            if(text_requests.size() == MAX_REQUESTS) break;
+            if(text_requests.size() == MAX_REQUESTS){
+                break;
+            }
         }
     }
     return text_requests;
 }
 
 void ConverterJSON::PutAnswers(std::vector<std::vector<std::pair<size_t, float>>> answers) {
-    ofstream fileJson;
-    fileJson.open(path_to_conf_files.string() + "answers.json");
-    fileJson << GeneratorJsonAnswers(GetResponsesLimit()).Generate(&answers);
-    fileJson.flush();
-    fileJson.close();
+    ofstream file_answers;
+    file_answers.open(path_to_conf_files.string() + "answers.json");
+    file_answers << GeneratorJsonAnswers(GetResponsesLimit()).Generate(&answers);
+    file_answers.flush();
+    file_answers.close();
 }
 
 bool ConverterJSON::CheckCountWordsInRequest(const string &request) {
