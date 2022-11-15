@@ -192,7 +192,7 @@ answers — базовое поле в этом файле, которое со�
 ```
   ./cmake-build-debug/src/search_engine.exe
 ```
-+ Для Windows:
++ Для Windows систем:
 ```
    .\cmake-build-debug\src\search_engine.exe
 ```
