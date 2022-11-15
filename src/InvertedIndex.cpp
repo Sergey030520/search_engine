@@ -57,7 +57,7 @@ void InvertedIndex::FindEntryAndIncreaseVal(const size_t & doc_id, vector<Entry>
 vector<pair<string, size_t>> InvertedIndex::CalculateNumberOccurrenceWords() {
     vector<pair<string, size_t>> words;
     for(const auto& word : freq_dictionary){
-        size_t total_occurrence = accumulate(begin(word.second), end(word.second), 0, [](int current_val,
+        size_t total_occurrence = accumulate(begin(word.second), end(word.second), 0, [](size_t current_val,
                                                                                       const Entry& entry){
             return current_val + entry.count;
         });
