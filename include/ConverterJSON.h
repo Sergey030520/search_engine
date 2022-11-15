@@ -8,6 +8,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <utility>
+#include "SearchServer.h"
 
 using namespace std;
 namespace fs = filesystem;
@@ -120,7 +121,7 @@ public:
 /**
 * Положить в файл answers.json результаты поисковых запросов
 */
-    void PutAnswers(std::vector<std::vector<std::pair<size_t, float>>> answers);
+    void PutAnswers(std::vector<std::vector<RelativeIndex>*>& answers);
     /**
 * Метод получения версии из файла config.json
 * @param config объект с конфигурационными данными поискового сервера

@@ -15,20 +15,9 @@ int main(int argc, char* argv[]) {
         InvertedIndex invertedIndex;
         invertedIndex.UpdateDocumentBase(converterJson.GetTextDocuments());
         SearchServer server(invertedIndex);
-        auto res = server.Search(converterJson.GetRequests());
-        vector<vector<pair<size_t , float>>> reqRes;
-        int id = 0;
-        for(auto vec : res){
-            reqRes.emplace_back(vector<pair<size_t, float>>());
-            for(auto ind : *vec){
-                reqRes.at(id).emplace_back(make_pair(ind.doc_id, ind.rank));
-            }
-            ++id;
-        }
-        converterJson.PutAnswers(reqRes);
-        for(auto vec : res){
-            delete vec;
-        }
+        auto res_requests = server.Search(converterJson.GetRequests());
+        converterJson.PutAnswers(res_requests);
+
     }catch (EngineException* except){
         ConsoleOutput().PrintLn(except->what());
     }

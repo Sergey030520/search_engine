@@ -121,10 +121,10 @@ std::vector<std::string> ConverterJSON::GetRequests() {
     return text_requests;
 }
 
-void ConverterJSON::PutAnswers(std::vector<std::vector<std::pair<size_t, float>>> answers) {
+void ConverterJSON::PutAnswers(std::vector<std::vector<RelativeIndex>*>& answers) {
     ofstream file_answers;
     file_answers.open(path_to_conf_files.string() + "answers.json");
-    file_answers << GeneratorJsonAnswers(GetResponsesLimit()).Generate(&answers);
+    file_answers << GeneratorJsonAnswers(GetResponsesLimit()).Generate(answers);
     file_answers.flush();
     file_answers.close();
 }

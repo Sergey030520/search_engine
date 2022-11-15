@@ -7,11 +7,11 @@
 
 GeneratorJsonAnswers::GeneratorJsonAnswers(int in_responses_limit) : responses_limit(in_responses_limit){}
 
-json GeneratorJsonAnswers::Generate(vector<vector<pair<size_t, float>>> *answers) {
+json GeneratorJsonAnswers::Generate(vector<vector<RelativeIndex>*> &answers) {
     json file_answers, requests;
-    for(auto numb_request = 0; numb_request < answers->size(); ++numb_request){
+    for(auto numb_request = 0; numb_request < answers.size(); ++numb_request){
         requests["request" + GenerateId(numb_request)] = ConvertRelevance(
-                ConvertArrayRelevance(&answers->at(numb_request)));
+                ConvertArrayRelevance(answers.at(numb_request)));
     }
     file_answers["answers"] = requests;
     return file_answers;
@@ -26,12 +26,12 @@ json GeneratorJsonAnswers::ConvertRelevance(const json& answer) {
     return relevance;
 }
 
-json GeneratorJsonAnswers::ConvertArrayRelevance(vector<pair<size_t, float>>* answer) const {
+json GeneratorJsonAnswers::ConvertArrayRelevance(vector<RelativeIndex>* answer) const {
     json answer_json = json::array();
     for(auto numb_response = 0; numb_response < answer->size() && numb_response < responses_limit; ++numb_response){
         auto response = answer->at(numb_response);
-        answer_json.emplace_back(json({make_pair("docid", response.first),
-                                       make_pair("rank", response.second)}));
+        answer_json.emplace_back(json({make_pair("docid", response.doc_id),
+                                       make_pair("rank", response.rank)}));
     }
     return answer_json;
 }
