@@ -42,11 +42,11 @@ private:
     SearchEngine searchEngine = SearchEngine("Search engine", 0.1f);
 
 #if defined(_WIN32) || defined(_WIN64)
-    const fs::path path_to_conf_files =
-            fs::current_path().parent_path().concat(R"(\file\)"); //путь до папки, где хранятся конфигурационные файлы
+    const fs::path path_to_conf_files = GetPathToRootDirProject()
+            .concat(R"(\configuration_files\)"); //путь до папки, где хранятся конфигурационные файлы
 #elif defined(__linux__)
-    const fs::path path_to_conf_files =
-            fs::current_path().parent_path().concat(R"(/file/)"); //путь до папки, где хранятся конфигурационные файлы
+    const fs::path path_to_conf_files = GetPathToRootDirProject()
+            .concat(R"(/configuration_files/)"); //путь до папки, где хранятся конфигурационные файлы
 #endif
     json config_file; //json объект конфигурационного файла сервера
 
@@ -91,6 +91,11 @@ private:
 * Метод выводит информацию о поисковом движке
 */
     void ShowEngine() const;
+    /**
+* Метод создает и возвращает путь до корневой папки проекта
+* @return возвращает путь до корневой папки проекта
+*/
+    static fs::path GetPathToRootDirProject();
 
 public:
     ConverterJSON();

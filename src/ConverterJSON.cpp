@@ -12,10 +12,11 @@
 
 
 ConverterJSON::ConverterJSON(){
+    cout << path_to_conf_files.string() << endl;
     try {
         config_file = LoadJsonFile(fs::path(path_to_conf_files.string() + "config.json"));
     }catch (EngineException* except){
-        ConsoleOutput().PrintLn(except->what());
+        throw except;
     }
     if(!config_file.contains("config")){
         throw new EngineException("Exception: config file is empty!");
@@ -164,4 +165,10 @@ float ConverterJSON::ReadVersionEngine(json config) {
 
 ConverterJSON::~ConverterJSON() {
     ConsoleOutput().PrintLn("Stop Engine!");
+}
+
+fs::path ConverterJSON::GetPathToRootDirProject() {
+    fs::path path_to_dir = fs::current_path();
+    for (; path_to_dir.filename() != "search_engine"; path_to_dir = path_to_dir.parent_path());
+    return path_to_dir;
 }
