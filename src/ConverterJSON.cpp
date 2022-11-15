@@ -12,7 +12,6 @@
 
 
 ConverterJSON::ConverterJSON(){
-    cout << path_to_conf_files.string() << endl;
     try {
         config_file = LoadJsonFile(fs::path(path_to_conf_files.string() + "config.json"));
     }catch (EngineException* except){
